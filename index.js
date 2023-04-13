@@ -7,15 +7,7 @@ global.TextEncoder = require("util").TextEncoder;
 global.TextDecoder = require("util").TextDecoder;
 
 const http = require("http");
-
-
-
 const app = express();
-
-
-
-
-
 
 // configure multer storage and file filter
 const storage = multer.diskStorage({
@@ -37,7 +29,6 @@ const fileFilter = function (req, file, cb) {
 
 const upload = multer({ storage: storage, fileFilter: fileFilter });
 
-
 // Speech to text if needed : 
 const speech = require('@google-cloud/speech').v1p1beta1;
 const { promisify } = require('util');
@@ -47,9 +38,6 @@ const linear16 = require('linear16');
 const client2 = new speech.SpeechClient({
   keyFilename: './smiling-matrix-345211-51682d772521.json'
 });
-
-
-
 
 // route for file upload
 app.post('/upload', upload.single('hindi'), (req, res, next) => {
@@ -116,8 +104,8 @@ else
 });
 
 // start the server
-app.listen(3000, () => {
-  console.log('Server started on port 3000');
+app.listen(3001, () => {
+  console.log('Server started on port 3001');
 });
 
 
